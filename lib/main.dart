@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:provider_test/provider/auth_provider.dart';
 import 'package:provider_test/provider/count_provider.dart';
 import 'package:provider_test/provider/example_1_provider.dart';
 import 'package:provider_test/provider/like_provider.dart';
 import 'package:provider_test/provider/theme_changer_provider.dart';
-import 'package:provider_test/screens/favourit/like_screen.dart';
-import 'package:provider_test/screens/value_notifier_listener.dart';
+import 'package:provider_test/screens/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,8 +13,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -23,7 +21,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => CountProvider()),
         ChangeNotifierProvider(create: (_) => Example1Provider()),
         ChangeNotifierProvider(create: (_) => LikeProvider()),
-        ChangeNotifierProvider(create: (_) => ThemeChangerProvider())
+        ChangeNotifierProvider(create: (_) => ThemeChangerProvider()),
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
       ],
       child: Builder(
         builder: (BuildContext context) {
@@ -43,7 +42,7 @@ class MyApp extends StatelessWidget {
               iconTheme: IconThemeData(color: Colors.green),
               appBarTheme: AppBarTheme(color: Colors.teal),
             ),
-            home: ValueNotifierListener(),
+            home: LoginPageScreen(),
           );
         },
       ),
